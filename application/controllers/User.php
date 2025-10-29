@@ -137,25 +137,42 @@ class User extends CI_Controller {
 				}
 			header("Location: ".base_url()."/user/relawan");
 		}
-		public function modev()
-		{
-			 $id = $this->session->id_login;
-			$data = $_POST;
-			if ($data['id_ev'] == 0) {
-						$data['login'] = $id;
-						$this->db->insert('tbl_evakuasi', $data);
-				}else {
-						$this->db->where("id_ev", $data['id_ev']);
-						unset($data['id_ev']);
-						$data['login'] = $id;
-						$this->db->update('tbl_evakuasi', $data);
-				}
-			header("Location: ".base_url()."/user/evakuasi");
-		}
-		public function modkelst()
-		{
-		    $id = $this->session->id_login;
-		    $data = $_POST;
+                public function modev()
+                {
+                         $id = $this->session->id_login;
+                        $data = $_POST;
+                        if ($data['id_ev'] == 0) {
+                                                $data['login'] = $id;
+                                                $this->db->insert('tbl_evakuasi', $data);
+                                }else {
+                                                $this->db->where("id_ev", $data['id_ev']);
+                                                unset($data['id_ev']);
+                                                $data['login'] = $id;
+                                                $this->db->update('tbl_evakuasi', $data);
+                                }
+                        header("Location: ".base_url()."/user/evakuasi");
+                }
+                public function hapus($jenis, $id)
+                {
+                        $opsi = [
+                                'pengungsi' => ['tabel' => 'tbl_pengungsi', 'id' => 'id_png', 'redirect' => '/user/pengungsi'],
+                                'pasien' => ['tabel' => 'tbl_pasien', 'id' => 'id_png', 'redirect' => '/user/pasien'],
+                                'pekerja' => ['tabel' => 'tbl_pekerja', 'id' => 'id_png', 'redirect' => '/user/pekerja'],
+                        ];
+
+                        if (!isset($opsi[$jenis])) {
+                                show_404();
+                        }
+
+                        $this->db->where($opsi[$jenis]['id'], $id);
+                        $this->db->delete($opsi[$jenis]['tabel']);
+
+                        header("Location: " . base_url() . $opsi[$jenis]['redirect']);
+                }
+                public function modkelst()
+                {
+                    $id = $this->session->id_login;
+                    $data = $_POST;
 		    if ($_FILES['bukti']['size'] != 0 )
 		    {
 		        $target_dir = "asset/upload/tlkeluhan/";
