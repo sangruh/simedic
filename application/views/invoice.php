@@ -1,0 +1,63 @@
+ <html>
+<body>
+<div>
+
+  <div >
+ 
+  <div><div></div>
+  <h2></h2>
+ </div>
+</div>
+ <div >
+  
+<style type="text/css">
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+#table1 {
+	border: 1px solid;
+	text-align: center;
+}
+	
+ td {
+	border: 1px solid;
+	text-align: center;
+}
+.nobor{
+	border: none !important;
+	 text-align: left;
+}
+p{
+	line-height: 5px
+}
+</style>
+	<table id="table1" class='center' >
+	<tr><td  > <img   src="<?php echo base_url("asset/logo.png"); ?>" width="100" height="135"/></td> 
+	<td>
+		<p><h3 style="    line-height: 0px">PEMERINTAH KABUPATEN LUMAJANG</h3></p>
+<p><h2 style="    line-height: 0px">INSPEKTORAT DAERAH</h2></p>
+<p>Jalan Arif Rahman Hakim No. 1 Telp. (0334) 881 485; </p>
+<p>Fax (0334) 894 126; e-mail : inspektorat@lumajangkab.go.id</p>
+<p>L U M A J A N G</p>
+			
+	</td></tr>
+	<tr><td colspan="2"><u><h1>BUKTI PENGADUAN</h1></u> </td></tr>
+	<tr><td>Kode Tracking <p><b style="line-height: 0px" ><h1><?php echo $qrcode; ?></h1></b></p></td>
+	<td colspan="2" rowspan="2">
+	
+			<table id="table" >
+						<tr> <td class="nobor" >Pelapor</td> <td class="nobor">:</td> <td class="nobor"><?php echo $table[0]['pelapor'] ?></td> </tr>
+						<tr> <td class="nobor" >Jenis Pengaduan</td> <td class="nobor">:</td> <td class="nobor"><?php echo $table[0]['judul_pengaduan']; ?></td> </tr>
+						<tr> <td class="nobor" >Tanggal Pengaduan</td> <td class="nobor">:</td> <td class="nobor"><?php echo date('d F Y',strtotime($table[0]['tanggal_progresp'])) ?></td> </tr>
+						<tr> <td class="nobor" >Status Pengaduan</td> <td class="nobor">:</td> <td class="nobor"><?php echo $table[0]['status_progresp'] ?></td> </tr>
+			</table>
+		
+	</td></tr>
+	
+	<tr><td> <img  src="<?php echo base_url("asset/qrcode/$qrcode.png"); ?>" width="175" height="175" /></td></tr>
+	</table>
+
+</body>
+</html>
